@@ -9,7 +9,7 @@ const Head = () => {
     dispatch(toggleSidebar());
   };
   return (
-    <header className="flex border-2 p-3 justify-between items-center h-[10vh]">
+    <header className="flex border-2 p-3 justify-between items-center h-[10vh] shadow-lg">
       {/* Left */}
       <div className="flex">
         <button onClick={handleToggleSidebar}>

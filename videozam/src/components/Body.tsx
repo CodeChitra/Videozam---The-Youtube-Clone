@@ -5,7 +5,7 @@ import { useAppSelector } from "../store/hooks/hooks";
 const Body = () => {
   const isSidebarOpen = useAppSelector((store) => store.app.isSidebarOpen);
   return (
-    <main className="grid grid-flow-col gap-2">
+    <main className="flex gap-2 w-full border-none">
       {isSidebarOpen && <Sidebar />}
       <MainContainer />
     </main>
