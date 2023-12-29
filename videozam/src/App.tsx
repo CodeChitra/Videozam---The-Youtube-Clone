@@ -3,6 +3,7 @@ import Body from "./components/Body";
 import Head from "./components/Head";
 import WatchContainer from "./components/WatchContainer";
 import MainContainer from "./components/MainContainer";
+import { useAppSelector } from "./store/hooks/hooks";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,9 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const dark = useAppSelector((store) => store.app.dark);
   return (
-    <div>
+    <div className={dark ? "dark" : "light"}>
       <Head />
       <RouterProvider router={router} />
     </div>

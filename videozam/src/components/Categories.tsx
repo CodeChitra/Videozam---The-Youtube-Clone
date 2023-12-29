@@ -2,7 +2,7 @@ import Category from "./Category";
 
 const Categories = () => {
   return (
-    <div className="border-2 flex overflow-x-scroll flex-nowrap items-center justify-start w-full no-scrollbar mb-6 shadow-none py-5 border-none sticky top-0 bg-slate-50">
+    <div className="border-2 flex overflow-x-scroll flex-nowrap items-center justify-start w-full no-scrollbar mb-6 shadow-none py-5 border-none sticky top-0 bg-slate-50 dark:bg-black">
       <Category>A</Category>
       <Category>All</Category>
       <Category>Entertainment</Category>

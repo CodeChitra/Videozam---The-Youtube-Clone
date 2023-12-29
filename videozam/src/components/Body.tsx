@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const Body = () => {
   const isSidebarOpen = useAppSelector((store) => store.app.isSidebarOpen);
   return (
-    <main className="flex gap-2 w-full border-none">
+    <main className="flex gap-2 w-full border-black dark:bg-black">
       {isSidebarOpen && <Sidebar />}
       <Outlet />
     </main>

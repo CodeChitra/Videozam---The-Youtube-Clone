@@ -33,17 +33,20 @@ const Videos = () => {
     };
   }, []);
   return (
-    <div className="border-none w-full grid grid-cols-1 sm:grid-cols-3 grid-flow-row justify-items-center gap-4">
-      {videos.map((video) => {
-        return (
-          <Link key={video.id} to={`/watch?v=${video.id}`}>
-            <Video video={video} />
-          </Link>
-        );
-      })}
-      {isLoading && <Loading />}
-      <div ref={target}>observer</div>
-    </div>
+    <>
+      <div className="border-none w-full grid grid-cols-1 sm:grid-cols-3 grid-flow-row justify-items-center gap-4">
+        {videos.map((video) => {
+          return (
+            <Link key={video.id} to={`/watch?v=${video.id}`}>
+              <Video video={video} />
+            </Link>
+          );
+        })}
+      </div>
+      <div ref={target} className="text-center dark:text-white font-bold">
+        Loading...
+      </div>
+    </>
   );
 };
 

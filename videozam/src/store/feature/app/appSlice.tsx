@@ -8,14 +8,16 @@ type AppState = {
   isLoading: boolean;
   isError: boolean;
   nextPageToken: string;
+  dark: boolean;
 };
 
 const initialState: AppState = {
-  isSidebarOpen: true,
+  isSidebarOpen: false,
   videos: [],
   isLoading: false,
   isError: false,
   nextPageToken: "",
+  dark: true,
 };
 
 export const getVideos = createAsyncThunk("app/getVideos", getVideosThunk);
@@ -34,6 +36,9 @@ const appSlice = createSlice({
     },
     closeSidebar: (state: AppState) => {
       state.isSidebarOpen = false;
+    },
+    toggleDarkMode: (state) => {
+      state.dark = !state.dark;
     },
   },
   extraReducers: (builder) => {
@@ -54,4 +59,4 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const { toggleSidebar, closeSidebar } = appSlice.actions;
+export const { toggleSidebar, closeSidebar, toggleDarkMode } = appSlice.actions;
