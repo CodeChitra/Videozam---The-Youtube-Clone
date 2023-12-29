@@ -2,7 +2,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosSearch } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { useAppDispatch } from "../store/hooks/hooks";
-import { toggleSidebar } from "../store/feature/appSlice";
+import { toggleSidebar } from "../store/feature/app/appSlice";
 const Head = () => {
   const dispatch = useAppDispatch();
   const handleToggleSidebar = () => {
@@ -15,7 +15,7 @@ const Head = () => {
         <button onClick={handleToggleSidebar}>
           <RxHamburgerMenu size={30} />
         </button>
-        <div className="h-8 ml-4">
+        <div className="h-8 ml-4 cursor-pointer">
           <img className="h-full" src="/youtube-logo.png" alt="youtube logo" />
         </div>
       </div>
