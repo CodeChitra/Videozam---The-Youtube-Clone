@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../store/hooks/hooks";
 import { getVideos } from "../store/feature/app/appSlice";
 import Video from "./Video";
 import { Link } from "react-router-dom";
-import Loading from "./Loading";
 
 const Videos = () => {
   const target = useRef<HTMLDivElement | null>(null);

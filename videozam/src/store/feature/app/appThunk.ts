@@ -1,12 +1,12 @@
-import { url } from "../../../utils/constants";
+import { popular_url } from "../../../utils/constants";
 
 export const getVideosThunk = async (_: void, thunkAPI: any) => {
   try {
-    let URL = url;
+    let URL = popular_url;
     const state = thunkAPI.getState();
     const pageToken = state.app.nextPageToken;
     if (pageToken !== "") {
-      URL = url + "&pageToken=" + pageToken;
+      URL = popular_url + "&pageToken=" + pageToken;
     }
     const res = await fetch(URL);
     const data = await res.json();
