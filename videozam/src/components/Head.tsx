@@ -10,6 +10,7 @@ import {
   getSuggestions,
   setShowSuggestions,
 } from "../store/feature/search/searchSlice";
+import { Outlet } from "react-router-dom";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const dark = useAppSelector((store) => store.app.dark);
@@ -36,59 +37,68 @@ const Head = () => {
     };
   }, [searchQuery]);
   return (
-    <header className="flex border-2 px-3 justify-between items-center h-[10vh] shadow-lg w-full dark:bg-gray-900 dark:text-white dark:border-black">
-      {/* Left */}
-      <div className="flex">
-        <button onClick={handleToggleSidebar}>
-          <RxHamburgerMenu size={30} style={{ color }} />
-        </button>
-        <div className="h-8 ml-4 cursor-pointer">
-          <img className="h-full" src="/youtube-logo.png" alt="youtube logo" />
-        </div>
-      </div>
-      {/* Middle */}
-      <div className="w-[35%] relative">
-        {showSuggestions && suggestions.length > 0 && (
-          <div className="bg-slate-50 w-full absolute top-10 z-20 rounded-lg border-2 border-slate-100 shadow-lg dark:bg-gray-800 dark:border-gray-900">
-            <ul className="py-2">
-              {suggestions.map((suggestion) => (
-                <li
-                  key={suggestion}
-                  className="px-2 py-1 hover:bg-slate-200 dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  🔍 {suggestion}
-                </li>
-              ))}
-            </ul>
+    <>
+      <header className="flex border-2 px-3 justify-between items-center h-[10vh] shadow-lg w-full dark:bg-gray-900 dark:text-white dark:border-black">
+        {/* Left */}
+        <div className="flex">
+          <button onClick={handleToggleSidebar}>
+            <RxHamburgerMenu size={30} style={{ color }} />
+          </button>
+          <div className="h-8 ml-4 cursor-pointer">
+            <img
+              className="h-full"
+              src="/youtube-logo.png"
+              alt="youtube logo"
+            />
           </div>
-        )}
-        <input
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => dispatch(setShowSuggestions(true))}
-          onBlur={() => dispatch(setShowSuggestions(false))}
-          className="w-full border-2 border-black outline-none rounded-xl px-2 py-1 dark:text-black"
-          type="text"
-          placeholder="Search"
-          value={searchQuery}
-        />
-        <button className="absolute right-0 top-0 bg-gray-500 w-10 h-full flex items-center justify-center rounded-r-xl overflow-hidden">
-          <IoIosSearch />
-        </button>
-      </div>
-      {/* Right */}
-      <div className="flex justify-between items-center w-32">
-        <button onClick={handleToggleDarkMode}>
-          {dark ? (
-            <MdOutlineLightMode size={24} style={{ color }} />
-          ) : (
-            <MdOutlineDarkMode size={24} style={{ color }} />
+        </div>
+        {/* Middle */}
+        <div className="w-[35%] relative">
+          {showSuggestions && suggestions.length > 0 && (
+            <div className="bg-slate-50 w-full absolute top-10 z-20 rounded-lg border-2 border-slate-100 shadow-lg dark:bg-gray-800 dark:border-gray-900">
+              <ul className="py-2">
+                {suggestions.map((suggestion) => (
+                  <li
+                    key={suggestion}
+                    className="px-2 py-1 hover:bg-slate-200 dark:hover:bg-gray-700 cursor-pointer"
+                  >
+                    🔍 {suggestion}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
-        </button>
-        <button>
-          <CgProfile size={24} style={{ color }} />
-        </button>
-      </div>
-    </header>
+          <input
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => dispatch(setShowSuggestions(true))}
+            onBlur={() => {
+              dispatch(setShowSuggestions(false));
+            }}
+            className="w-full border-2 border-black outline-none rounded-xl px-2 py-1 dark:text-black"
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+          />
+          <button className="absolute right-0 top-0 bg-gray-500 w-10 h-full flex items-center justify-center rounded-r-xl overflow-hidden">
+            <IoIosSearch />
+          </button>
+        </div>
+        {/* Right */}
+        <div className="flex justify-between items-center w-32">
+          <button onClick={handleToggleDarkMode}>
+            {dark ? (
+              <MdOutlineLightMode size={24} style={{ color }} />
+            ) : (
+              <MdOutlineDarkMode size={24} style={{ color }} />
+            )}
+          </button>
+          <button>
+            <CgProfile size={24} style={{ color }} />
+          </button>
+        </div>
+      </header>
+      <Outlet />
+    </>
   );
 };
 
