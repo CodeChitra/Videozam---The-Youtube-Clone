@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { v4 as uuidV4 } from "uuid";
 import { useAppSelector } from "../store/hooks/hooks";
 import { getVideos } from "../store/feature/app/appSlice";
 import Video from "./Video";
@@ -14,7 +15,7 @@ const Videos = () => {
       <div className="border-none w-full grid grid-cols-1 sm:grid-cols-3 grid-flow-row justify-items-center gap-4">
         {videos.map((video) => {
           return (
-            <Link key={video.id} to={`/watch?v=${video.id}`}>
+            <Link key={uuidV4()} to={`/watch?v=${video.id}`}>
               <Video video={video} />
             </Link>
           );

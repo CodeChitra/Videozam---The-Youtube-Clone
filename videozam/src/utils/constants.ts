@@ -4,3 +4,5 @@ export const popular_url = `https://www.googleapis.com/youtube/v3/videos?part=sn
 
 export const suggestions_url =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const searched_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=18&type=video&key=${API_KEY}&q=`;

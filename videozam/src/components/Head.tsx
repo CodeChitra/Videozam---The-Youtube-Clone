@@ -10,7 +10,7 @@ import {
   getSuggestions,
   setShowSuggestions,
 } from "../store/feature/search/searchSlice";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const dark = useAppSelector((store) => store.app.dark);
@@ -44,13 +44,13 @@ const Head = () => {
           <button onClick={handleToggleSidebar}>
             <RxHamburgerMenu size={30} style={{ color }} />
           </button>
-          <div className="h-8 ml-4 cursor-pointer">
+          <Link to={"/"} className="h-8 ml-4 cursor-pointer">
             <img
               className="h-full"
               src="/youtube-logo.png"
               alt="youtube logo"
             />
-          </div>
+          </Link>
         </div>
         {/* Middle */}
         <div className="w-[35%] relative">
@@ -58,22 +58,22 @@ const Head = () => {
             <div className="bg-slate-50 w-full absolute top-10 z-20 rounded-lg border-2 border-slate-100 shadow-lg dark:bg-gray-800 dark:border-gray-900">
               <ul className="py-2">
                 {suggestions.map((suggestion) => (
-                  <li
+                  <Link
                     key={suggestion}
-                    className="px-2 py-1 hover:bg-slate-200 dark:hover:bg-gray-700 cursor-pointer"
+                    to={`/results?search_query=${suggestion}`}
                   >
-                    🔍 {suggestion}
-                  </li>
+                    <li className="px-2 py-1 hover:bg-slate-200 dark:hover:bg-gray-700 cursor-pointer">
+                      🔍 {suggestion}
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </div>
           )}
           <input
+            id="search"
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => dispatch(setShowSuggestions(true))}
-            onBlur={() => {
-              dispatch(setShowSuggestions(false));
-            }}
             className="w-full border-2 border-black outline-none rounded-xl px-2 py-1 dark:text-black"
             type="text"
             placeholder="Search"

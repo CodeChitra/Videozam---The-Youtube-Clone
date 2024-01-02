@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import getSuggestionsThunk from "./searchThunk";
+import { getSearchedVideosThunk, getSuggestionsThunk } from "./searchThunk";
+import { VideoType } from "../../../types/video-type";
 
 type SearchState = {
   suggestions: string[];
@@ -7,16 +8,25 @@ type SearchState = {
   cachedSuggestions: {
     [index: string]: string[];
   };
+  searchedVideos: VideoType[];
+  nextPageToken: "";
 };
 const initialState: SearchState = {
   suggestions: [],
   cachedSuggestions: {},
   showSuggestions: false,
+  searchedVideos: [],
+  nextPageToken: "",
 };
 
 export const getSuggestions = createAsyncThunk(
   "search/getSuggestions",
   getSuggestionsThunk
+);
+
+export const getSearchedVideos = createAsyncThunk(
+  "search/getSearchedVideos",
+  getSearchedVideosThunk
 );
 
 const searchSlice = createSlice({
@@ -35,14 +45,29 @@ const searchSlice = createSlice({
         ...state.cachedSuggestions,
       };
     },
+    clearSearchedVideos: (state) => {
+      state.searchedVideos = [];
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getSuggestions.fulfilled, (state, action) => {
-      state.suggestions = action.payload;
-    });
+    builder
+      .addCase(getSuggestions.fulfilled, (state, action) => {
+        state.suggestions = action.payload;
+      })
+      .addCase(getSearchedVideos.fulfilled, (state, action) => {
+        state.searchedVideos = [
+          ...state.searchedVideos,
+          ...action.payload.items,
+        ];
+        state.nextPageToken = action.payload.nextPageToken;
+      });
   },
 });
 
 export default searchSlice.reducer;
-export const { setShowSuggestions, setSuggestions, setCachedSuggestions } =
-  searchSlice.actions;
+export const {
+  setShowSuggestions,
+  setSuggestions,
+  setCachedSuggestions,
+  clearSearchedVideos,
+} = searchSlice.actions;

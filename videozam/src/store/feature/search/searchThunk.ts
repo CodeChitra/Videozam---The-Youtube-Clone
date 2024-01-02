@@ -1,7 +1,11 @@
-import { suggestions_url } from "../../../utils/constants";
+import { searched_url, suggestions_url } from "../../../utils/constants";
+import { setIsLoading } from "../app/appSlice";
 import { setCachedSuggestions } from "./searchSlice";
 
-const getSuggestionsThunk = async (searchQuery: string, thunkAPI: any) => {
+export const getSuggestionsThunk = async (
+  searchQuery: string,
+  thunkAPI: any
+) => {
   const { cachedSuggestions } = thunkAPI.getState().search;
   try {
     if (cachedSuggestions[searchQuery]) {
@@ -17,4 +21,24 @@ const getSuggestionsThunk = async (searchQuery: string, thunkAPI: any) => {
   }
 };
 
-export default getSuggestionsThunk;
+export const getSearchedVideosThunk = async (
+  searchQuery: string,
+  thunkAPI: any
+) => {
+  try {
+    thunkAPI.dispatch(setIsLoading(true));
+    let URL = searched_url + searchQuery;
+    const state = thunkAPI.getState();
+    const pageToken = state.search.nextPageToken;
+    if (pageToken !== "") {
+      URL = URL + "&pageToken=" + pageToken;
+    }
+    const res = await fetch(URL);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return error;
+  } finally {
+    thunkAPI.dispatch(setIsLoading(false));
+  }
+};

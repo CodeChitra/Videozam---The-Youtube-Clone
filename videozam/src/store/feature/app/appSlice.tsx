@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { VideoType } from "../../../types/video-type";
 import { getVideosThunk } from "./appThunk";
 
@@ -40,6 +40,9 @@ const appSlice = createSlice({
     toggleDarkMode: (state) => {
       state.dark = !state.dark;
     },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,4 +62,5 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const { toggleSidebar, closeSidebar, toggleDarkMode } = appSlice.actions;
+export const { toggleSidebar, closeSidebar, toggleDarkMode, setIsLoading } =
+  appSlice.actions;

@@ -3,8 +3,10 @@ type Thumbnail = {
   width: number;
   height: number;
 };
+
+type ID = { videoId: string; kind: string };
 export type VideoType = {
-  id: string;
+  id: ID;
   snippet: {
     publishedAt: string;
     channelId: string;

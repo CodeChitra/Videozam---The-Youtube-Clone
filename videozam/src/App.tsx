@@ -3,8 +3,10 @@ import Body from "./components/Body";
 import Head from "./components/Head";
 import WatchContainer from "./components/WatchContainer";
 import MainContainer from "./components/MainContainer";
-import { useAppSelector } from "./store/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks/hooks";
 import ResultsContainer from "./components/ResultsContainer";
+import { MouseEvent, MouseEventHandler } from "react";
+import { setShowSuggestions } from "./store/feature/search/searchSlice";
 
 // const router = createBrowserRouter([
 //   {
@@ -55,8 +57,16 @@ const router = createBrowserRouter([
 
 const App = () => {
   const dark = useAppSelector((store) => store.app.dark);
+  const dispatch = useAppDispatch();
+  const handleCloseSuggestions = (event: any) => {
+    if (event.target.id !== "search") dispatch(setShowSuggestions(false));
+  };
   return (
-    <div className={dark ? "dark" : "light"}>
+    <div
+      id="app"
+      className={dark ? "dark" : "light"}
+      onClick={handleCloseSuggestions}
+    >
       <RouterProvider router={router} />
     </div>
   );
