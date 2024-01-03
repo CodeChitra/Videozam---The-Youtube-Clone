@@ -1,6 +1,6 @@
 import { CgProfile } from "react-icons/cg";
 import COMMENTS, { SingleComment } from "../utils/comments";
-
+import { v4 as uuidV4 } from "uuid";
 const Comment = ({ comment }: { comment: SingleComment }) => {
   return (
     <div className="flex p-2 gap-2">
@@ -15,7 +15,7 @@ const CommentsList = ({ comments }: { comments: SingleComment[] }) => {
     <div>
       {comments.map((comment: SingleComment) => {
         return (
-          <div>
+          <div key={uuidV4()}>
             <Comment comment={comment} />
             <div className="border-l-2 ml-4">
               <CommentsList comments={comment.replies || []} />

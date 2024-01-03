@@ -58,8 +58,9 @@ const router = createBrowserRouter([
 const App = () => {
   const dark = useAppSelector((store) => store.app.dark);
   const dispatch = useAppDispatch();
-  const handleCloseSuggestions = (event: any) => {
-    if (event.target.id !== "search") dispatch(setShowSuggestions(false));
+  const handleCloseSuggestions = (event: MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement;
+    if (target.id !== "search") dispatch(setShowSuggestions(false));
   };
   return (
     <div

@@ -1,5 +1,4 @@
-const API_KEY = "AIzaSyCyKUlgK5FSK71oY7S6OuOos46U6klxI0U";
-
+const API_KEY = import.meta.env.VITE_API_KEY;
 export const popular_url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&key=${API_KEY}&maxResults=9`;
 
 export const suggestions_url =
