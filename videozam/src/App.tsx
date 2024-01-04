@@ -5,7 +5,7 @@ import WatchContainer from "./components/WatchContainer";
 import MainContainer from "./components/MainContainer";
 import { useAppDispatch, useAppSelector } from "./store/hooks/hooks";
 import ResultsContainer from "./components/ResultsContainer";
-import { MouseEvent, MouseEventHandler } from "react";
+import { MouseEvent } from "react";
 import { setShowSuggestions } from "./store/feature/search/searchSlice";
 
 // const router = createBrowserRouter([
