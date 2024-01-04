@@ -7,7 +7,7 @@ Videozam is a video streaming platform built using React, Redux, Redux Thunk, Re
 
 ### 1. Autocomplete Search Box
 Implemented a highly performant Autocomplete search box using debouncing for a smoother user experience.
-**Note:** To enjoy the Autocomplete Search functionality, please use the [Block CORS browser extension]([https://example-extension-link.com](https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino)) since the project uses the YouTube API, which restricts cross-origin resource access.
+**Note:** To enjoy the Autocomplete Search functionality, please use the [Unblock CORS browser extension]([https://example-extension-link.com](https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino)) since the project uses the YouTube API, which restricts cross-origin resource access.
 
 ### 2. Infinite Scroll
 Utilized Infinite Scroll to enhance app loading speed, providing users with a seamless and efficient browsing experience.
