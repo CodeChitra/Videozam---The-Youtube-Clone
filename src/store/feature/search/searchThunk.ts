@@ -12,6 +12,9 @@ export const getSuggestionsThunk = async (
       return cachedSuggestions[searchQuery];
     } else {
       const res = await fetch(suggestions_url + searchQuery);
+      if (!res.ok) {
+        return ["React", "Next JS", "TypeScript", "Cricket", "Ram Mandir"];
+      }
       const json = await res.json();
       thunkAPI.dispatch(setCachedSuggestions({ [searchQuery]: json[1] }));
       return json[1];
